@@ -9,6 +9,7 @@ using MailKit;
 using MimeKit;
 using MailKit.Net.Pop3;
 using static MailBot.Program;
+using System.Text.RegularExpressions;
 
 namespace MailBot
 {
@@ -22,7 +23,7 @@ namespace MailBot
             public static string mailPopServer = "pop.gmail.com";
             public static Int32 mailImapPort = 993;
             public static Int32 mailPopPort = 995;            
-        }
+        }         
         static void Main(string[] args)
         {
             
@@ -116,7 +117,18 @@ namespace MailBot
             }
             else if (Console.ReadKey().Key == ConsoleKey.D3)
             {
-
+                string emailString = Console.ReadLine();
+                bool isEmail = Regex.IsMatch(emailString, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
+                if (isEmail)
+                {
+                    Connection.userName = emailString;
+                    Console.WriteLine("Introduce tu password: ");
+                    Connection.userPass = Console.ReadLine();
+                }
+                else
+                {
+                    Console.WriteLine("El email no es valido. Pruebe de neuvo.");
+                }
             }
             else
             {
