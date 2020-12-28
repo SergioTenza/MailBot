@@ -1,2 +1,2 @@
 # MailBot
-Simple MailBot Receive and Communicate with API contents
+Simple MailBot Receive Mail and Communicate EXCEL data to API contents
