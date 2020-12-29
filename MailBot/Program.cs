@@ -8,7 +8,6 @@ using MailKit.Search;
 using MailKit;
 using MimeKit;
 using MailKit.Net.Pop3;
-using static MailBot.Program;
 using System.Text.RegularExpressions;
 
 namespace MailBot
@@ -19,129 +18,151 @@ namespace MailBot
         {
             public static string userName = Environment.GetEnvironmentVariable("USER_TEST_EMAIL", EnvironmentVariableTarget.User);
             public static string userPass = Environment.GetEnvironmentVariable("USER_TEST_PASSWORD", EnvironmentVariableTarget.User);
-            public static string mailImapServer = "imap.gmail.com";
-            public static string mailPopServer = "pop.gmail.com";
+            public static string mailImapGmail = "imap.gmail.com";
+            public static string mailPopGmail = "pop.gmail.com";
+            public static string mailImapIonos = "imap.ionos.es";
+            public static string mailPopIonos = "pop.ionos.es";
             public static Int32 mailImapPort = 993;
-            public static Int32 mailPopPort = 995;            
+            public static Int32 mailPopPort = 995;
+             //Get string getEnv = Environment.GetEnvironmentVariable("envVar");
+            //Set string setEnv = Environment.SetEnvironmentVariable("envvar", varEnv);
         }         
         static void Main(string[] args)
         {
             
             Console.WriteLine("Bienvenidos a MailBot");
-            Options();
-            //            Get
-
-            //string getEnv = Environment.GetEnvironmentVariable("envVar");
-            //            Set
-
-            //string setEnv = Environment.SetEnvironmentVariable("envvar", varEnv);
+            Domenu();
+           
         }
-        private static void Options()
+        static void DoMenu()
         {
-            Console.WriteLine("\nSelecciona tu opcion:\n1 POP\n2 IMAP\n3 Cambiar Usuario");
-            if (Console.ReadKey().Key == ConsoleKey.D1)
-            {
-                try
-                {
-                    using (var client = new Pop3Client())
-                    {
-                        client.Connect(Connection.mailPopServer, Connection.mailPopPort, true);
+	        DisplaySelection();
 
-                        client.Authenticate(Connection.userName, Connection.userPass);
+	        SelectionIndex = 0;
 
-                        for (int i = 0; i < client.Count; i++)
-                        {
-                            var message = client.GetMessage(i);
-                            Console.WriteLine("Subject: {0}", message.Subject);
-                        }
+	        bool resultSelection = int.TryParse(CommandIndex, out SelectionIndex);
 
-                        client.Disconnect(true);
-                    }
-                }
-                catch (Exception Error)
-                {
+	        if(resultSelection)
+	        {
+		        while(SelectionIndex != 99)
+		        {
+			        switch(SelectionIndex)
+				        {
+                            case 10:
+                                break;
+                            case 11:
+                                break;
+                            case 12:
+                                break;
+                            case 13:
+                                break;
+					        case 98:
+					        displayOptions();
+                                break;
+					        default:
+					            break;
+				        }
+		        }
+	        }
 
-                    Console.WriteLine("Ha ocurrido un error.\nPulsa 'E' si quieres ver el error.\nPulsa cualquier tecla para continuar...");
-                    if (Console.ReadKey().Key == ConsoleKey.E)
-                    {
-                        Console.WriteLine(Error);
-                        Options();
-                    }
-                    else
-                    {
-                        Options();
-                    }
-                }
-
-            }
-            else if (Console.ReadKey().Key == ConsoleKey.D2)
-            {
-                try
-                {
-                    using (var client = new ImapClient())
-                    {
-                        client.Connect(Connection.mailImapServer, Connection.mailImapPort, true);
-
-                        client.Authenticate(Connection.userName, Connection.userPass);
-
-                        // The Inbox folder is always available on all IMAP servers...
-                        var inbox = client.Inbox;
-                        inbox.Open(FolderAccess.ReadOnly);
-
-                        Console.WriteLine("Total messages: {0}", inbox.Count);
-                        Console.WriteLine("Recent messages: {0}", inbox.Recent);
-
-                        for (int i = 0; i < inbox.Count; i++)
-                        {
-                            var message = inbox.GetMessage(i);
-                            Console.WriteLine("Subject: {0}", message.Subject);
-                        }
-
-                        client.Disconnect(true);
-                    }
-                }
-                catch (Exception Error)
-                {
-                    Console.WriteLine("Ha ocurrido un error.\nPulsa 'E' si quieres ver el error.\nPulsa cualquier tecla para continuar...");
-                    if (Console.ReadKey().Key == ConsoleKey.E)
-                    {
-                        Console.WriteLine(Error);
-                        Options();
-                    }
-                    else
-                    {
-                        Options();
-                    }
-                }
-
-            }
-            else if (Console.ReadKey().Key == ConsoleKey.D3)
-            {
-                string emailString = Console.ReadLine();
-                bool isEmail = Regex.IsMatch(emailString, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
-                if (isEmail)
-                {
-                    Connection.userName = emailString;
-                    Console.WriteLine("Introduce tu password: ");
-                    Connection.userPass = Console.ReadLine();
-                }
-                else
-                {
-                    Console.WriteLine("El email no es valido. Pruebe de neuvo.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Comando no reconocido\nPulsa 'R' para reintentarlo o cualquier tecla para salir de la aplicacion.");
-                if (Console.ReadKey().Key == ConsoleKey.R)
-                {
-                    Options();
-                }
-                else
-                {
-                    Environment.Exit(0);
-                }
-            }
         }
+        static private void displaySelection()
+        {           
+            Console.WriteLine("\n");
+            Console.WriteLine("\nType your selection Number. Type '98 for OPTIONS'");
+            Console.Write("> ");
+        }
+        static private void displayOptions()
+        {
+            Console.WriteLine("\n");
+            Console.WriteLine("OSC Camera Wireless Controller .NET Core Application");
+            Console.WriteLine("Developed by Sergio Tenza\n");
+            Console.WriteLine("Copyright (c) TNZ Servicios Informaticos. All Rights Reserved.");
+            Console.WriteLine("==============================================================\n");            
+            Console.ForegroundColor = ConsoleColor.Green;     
+            Console.WriteLine("10.  POP Gmail Server");
+            Console.WriteLine("11.  IMAP Gmail Server");
+            Console.WriteLine("12.  POP Ionos Server");
+            Console.WriteLine("13.  IMAP Ionos Server");
+            Console.WriteLine("98.  Show Application Options");
+            Console.WriteLine("99.  Exit Application");
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.WriteLine("\n");
+            Console.Write("> ");
+        }
+        static private void Server(string type,string service)
+        {            
+            var _command; 
+
+            switch (type)
+	        {
+                    case POP:
+                        switch (service)
+	                    {
+                                case gmail:
+                                    _command = Tuple.Create(mailPopGmail, mailPopPort);
+                                    break;
+                                case ionos:
+                                    _command = Tuple.Create(mailPopIonos, mailPopPort);
+                                    break;
+		                        default:
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("==============================================================\n"); 
+                                    Console.WriteLine("Ha ocurrido un error\n");
+                                    Console.WriteLine("==============================================================\n");
+                                    Console.ForegroundColor = ConsoleColor.Gray;
+                                    displaySelection();
+                                    break;
+	                    }
+                        break;
+                    case IMAP: 
+                        switch (service)
+	                    {
+                                case gmail:
+                                    _command = Tuple.Create(mailImapGmail, mailImapPort);
+                                    break;
+                                case ionos:
+                                    _command = Tuple.Create(mailImapIonos, mailImapPort);
+                                    break;                                
+		                        default:
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("==============================================================\n"); 
+                                    Console.WriteLine("Ha ocurrido un error\n");
+                                    Console.WriteLine("==============================================================\n");
+                                    Console.ForegroundColor = ConsoleColor.Gray;
+                                    displaySelection();
+                                    break;
+	                    }
+                        break;
+		            default:
+                        break;
+	        }
+            //bool checkCommand = _command.Item1.Contains("");
+        }
+       
+        #region Console Handler
+        static bool ConsoleEventCallback(int eventType)
+        {
+            switch (eventType)
+            {
+                //Ctrl+C
+                case 0:                    
+                //Close
+                case 2:
+                    // Stop the server 
+                    Console.Write("Server stopping...");
+                    server.Stop();
+                    Console.WriteLine("Done!");
+                    break;
+            }
+            return false;
+        }
+
+        static ConsoleEventDelegate handler;
+
+        private delegate bool ConsoleEventDelegate(int eventType);
+        [DllImport("kernel32.dll", SetLastError = true)]
+        private static extern bool SetConsoleCtrlHandler(ConsoleEventDelegate callback, bool add);
+        #endregion
     }
 }
