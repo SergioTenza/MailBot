@@ -1,3 +1,5 @@
+C:\Users\serge\Source\Repos\SergioTenza\MailBot\MailBot\obj\Debug\MailBot.csproj.CoreCompileInputs.cache
+C:\Users\serge\Source\Repos\SergioTenza\MailBot\MailBot\obj\Debug\MailBot.csprojAssemblyReference.cache
 C:\Users\serge\Source\Repos\SergioTenza\MailBot\MailBot\bin\Debug\MailBot.exe.config
 C:\Users\serge\Source\Repos\SergioTenza\MailBot\MailBot\bin\Debug\MailBot.exe
 C:\Users\serge\Source\Repos\SergioTenza\MailBot\MailBot\bin\Debug\MailBot.pdb
@@ -17,8 +19,6 @@ C:\Users\serge\Source\Repos\SergioTenza\MailBot\MailBot\bin\Debug\MailKit.xml
 C:\Users\serge\Source\Repos\SergioTenza\MailBot\MailBot\bin\Debug\MimeKit.pdb
 C:\Users\serge\Source\Repos\SergioTenza\MailBot\MailBot\bin\Debug\MimeKit.xml
 C:\Users\serge\Source\Repos\SergioTenza\MailBot\MailBot\bin\Debug\System.Buffers.xml
-C:\Users\serge\Source\Repos\SergioTenza\MailBot\MailBot\obj\Debug\MailBot.csprojAssemblyReference.cache
-C:\Users\serge\Source\Repos\SergioTenza\MailBot\MailBot\obj\Debug\MailBot.csproj.CoreCompileInputs.cache
 C:\Users\serge\Source\Repos\SergioTenza\MailBot\MailBot\obj\Debug\MailBot.csproj.CopyComplete
 C:\Users\serge\Source\Repos\SergioTenza\MailBot\MailBot\obj\Debug\MailBot.exe
 C:\Users\serge\Source\Repos\SergioTenza\MailBot\MailBot\obj\Debug\MailBot.pdb
